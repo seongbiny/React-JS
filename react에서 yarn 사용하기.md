@@ -1,10 +1,18 @@
 ## react에서 yarn 사용하기
 
+yarn 1.22 install
 
+yarn add ~
+
+yarn start
 
 ## react에서 bootstrap 사용하기
 
+```
+yarn add react-bootstrap bootstrap
+```
 
+index.html 파일 <head> 태그 안에 CSS link 태그 복붙
 
 ## react에서 react router 사용하기
 
@@ -143,4 +151,32 @@ function App(){
 ```
 
 Route태그들을 Switch로 감싸준다 그럼 **맨 위의 Route 하나만 보여줌**
+
+## axios
+
+```
+yarn add axios
+```
+
+import axios from 'axios';
+
+```react
+axios.get('url')
+.then(()=>{ 요청성공 시 실행할 코드 })
+.catch(()=>{ 요청실패 시 실행할 코드 })
+```
+
+``` react
+axios.post('url', { id : 'test', pw : 1234})
+  .then((result)=>{  })
+  .catch(()=>{ })
+```
+
+## styled-components
+
+```
+yarn add styled-components
+```
+
+import styled from 'styled-components'
 

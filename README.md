@@ -236,3 +236,36 @@ var newArray = array.map(function(a){
 
 
 
+## useEffect
+
+```react
+import React, {useState, useEffect} from 'react';
+
+function Detail(){
+
+  useEffect(()=>{
+    //코드를 적습니다 여기
+    return function 어쩌구(){ 실행할 코드 } //컴포넌트가 사라질 때 실행
+  }, [alert]); // 실행조건. alert라는 이름의 state가 변경될 때만 업데이트로 치고 실행해달란 뜻. []면 컴포넌트 로드때만 딱 한번 실행
+  
+  return (
+    <HTML많은곳/>
+  )
+}
+```
+
+1. 페이지 상단에 useEffect를 import 한다.
+2. useEffect() 사용
+3. 안에 콜백함수
+4. 콜백함수 안에는 **Detail 컴포넌트가 첫 등장하고나서 실행하고싶은 코드**적어준다.
+
+#### useEffect() 내의 코드의 실행조건
+
+* 컴포넌트가 첫 등장해서 로딩이 끝난 후에 (mount 끝났을 때)
+* 컴포넌트가 재랜더링 되고난 후에 (update 되고난 후)
+
+```javascript
+타이머이름 = setTimeout( ()=>{  1초 후 실행할 코드 }, 1000);
+clearTimeout(타이머이름) 
+```
+
