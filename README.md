@@ -83,4 +83,121 @@ class는 몇 가지 추가 기능이 있다.
 
 
 
-state = 바뀌는부분
+### 리액트를 배우는 이유?
+
+**Web app** 을 만들기 위해
+
+Vibe, Flipkart, Instagram 같은 사이트를 웹앱이라고 부른다.
+
+다른 페이지로 넘어가거나 포스팅을 발행하거나 그런 행동을 해도 새로고침이 되지 않고 **스무스하게** 동작한다.
+
+
+
+웹앱을 사용하는 이유
+
+- UX가 뛰어나서 좋은 사용자경험을 제공하니까
+- HTML 관리가 편해지고
+- 구매전환율도 높아지고
+- 리액트 문법으로 IOS/Android 모바일 앱제작도 가능하고
+- 서버개발자가 편해져서
+
+
+
+### App.js
+
+```react
+function App(){
+    return(
+      <div className="App">
+      
+        </div>
+    )
+}
+```
+
+리액트에서 JSX라는 문법을 쓴다. JS+HTML 일종의 자바스크립트기 때문에 자바스크립트에서 사용하는 예약어인 class라는 키워드를 막 사용하면 안됨
+
+
+
+### JSX에서 데이터바인딩하기
+
+데이터바인딩은? 자바스크립트 데이터를 HTML에 꽂아넣는 작업
+
+```react
+function App(){
+    var data = '안녕하세요'; // 이 data를
+    retrun (
+        <div className="App">
+      		<div className="black-nav">
+            <div></div> // 여기에 꽂고 싶으면?
+            </div>
+        </div>
+    )
+}
+```
+
+```react
+function App(){
+    var data = '안녕하세요';
+    retrun (
+    	<div className="App">
+        	<div className="black-nav">
+                <div>개발 blog</div>
+                <div>{ data }</div> 
+            </div>
+        </div>
+    )
+}
+```
+
+
+
+### HTML에 스타일을 직접 넣고 싶으면
+
+JSX 상에서는 무조건 {} 오브젝트로 바꿔서 넣어야한다.
+
+```jsx
+<div style={ 스타일용 오브젝트 }> 글씨 </div>
+
+<div style={ {color: 'blue', fontSize: '30px'} }> 글씨 </div>
+```
+
+- {속성명: '속성값'}
+- 복잡해질 수 있다 => 변수로 따로 저장해놓고 style={변수명} 이렇게 넣거나 CSS파일에 class를 만들어 사용한다.
+
+
+
+### state 만들어서 데이터 저장하기
+
+리액트에선 변수 말고 state를 만들어서 데이터를 저장해 쓸 수 있다.
+
+**변수가 변경될 때 자동으로 관련된 HTML을 재랜더링되게 만들고 싶으면** 변수 말고 state를 만들어 써야한다.
+
+**리액트는 state가 수정이 일어나면 state가 포함된 HTML을 자동으로 재랜더링 해준다**
+
+```react
+import { useState } from 'react';
+
+let [변수명, 변수명변경] = useState(저장할 데이터);
+```
+
+**state 데이터도 똑같이 변수처럼 데이터바인딩 가능**
+
+**state에는 Array, Object 아무거나 다 넣을 수 있다.**
+
+state를 변경하려면 state변경함수를 이용한다.
+
+1. 수정하고 싶은 state의 deep/shallow 카피본을 하나 생성한다.
+2. 카피본을 원하는대로 수정한다.
+3. 카피본을 state변경함수() 에 넣는다.
+
+
+
+### 어떤 HTML들을 Component 만드는게 좋을까?
+
+- 사이트에 반복해서 출현하는 HTML 덩어리들
+- 내용이 매우 자주 변경될 것 같은 HTML 부분을 잘라서
+- 다른 페이지를 만들고 싶다면 그 페이지의 HTML 내용을 하나의 컴포넌트로
+- 다른 팀원과 협업할 때 웹페이지를 컴포넌트 단위로 나눠서 작업을 분배
+
+컴포넌트간에 state를 쓰고싶으면 props 문법을 이용해야하니까 너무 잘게 쪼개지 않기
