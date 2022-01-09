@@ -2,7 +2,8 @@
 
 #### redux를 쓰는 이유
 
-1. props 전송 없이도 모든 컴포넌트들이 state를 사용할 수 있게 만들어준다.
+1. 모든 컴포넌트가 props 없이도 state 꺼내 쓸 수 있어서 
+2. state 버그 관리가 용이, state 수정하려면 수정방법을 reducer로 미리 정의해놓고 컴포넌트는 dispatch() 를 이용해서 state 수정해달라고 reducer에 부탁하는 형식으로 코드를 짜야한다. 그래야 갑자기 state가 이상해지는 버그가 생겨도 범인을 reducer에서 쉽게 찾을 수 있다.
 
 ```
 yarn add redux react-redux
@@ -155,4 +156,53 @@ export default connect(state를props화)(Cart);
 2. 원하는 곳에서 dispatch() 라는 함수를 써서 reducer에게 수정해달라고 요청
 
 ### 데이터 수정하는 reducer 만드는 법
+
+reducer funciton 안에
+
+1. state 초기값
+2. state 데이터 수정방법 
+
+들어가야 함
+
+```react
+// index.js
+
+let 기본state = [{id : 0, name : '멋진신발', quan : 2}];
+
+function reducer(state = 기본state, 액션){
+  // 수정방법 정의
+  액션.type === '명령어'
+  return state
+}
+let store = createStore(reducer);
+```
+
+```react
+// Cart.js
+
+<button onClick={()=>{ props.dispatch({type: '명령어'}) }}> + </button>
+```
+
+
+
+**내가 이 state 데이터를 다른 컴포넌트에서 쓸 일이 없다면 간단하게 useState()로 Cart 컴포넌트 안에 간단하게 만들자**
+
+반면 많은 컴포넌트들이 공유하는 값은 redux store안에 보관
+
+
+
+### useSelector & useDispatch
+
+```react
+import { useSelector, useDispatch } from 'react-redux';
+
+function Cart(props) {
+  let state = useSelector((state) => state )
+  let dispatch = useDispatch()
+  
+  (생략)
+} 
+```
+
+
 
