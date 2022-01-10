@@ -130,7 +130,7 @@ export default connect(state를props화)(Cart);
 
 
 
-**셋팅**
+**셋팅**                      
 
 1. index.js에 <Provider>를 import 해온 다음
 2. state 값 공유를 원하는 컴포넌트를 감싼다.
