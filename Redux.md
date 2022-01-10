@@ -3,7 +3,7 @@
 #### redux를 쓰는 이유
 
 1. 모든 컴포넌트가 props 없이도 state 꺼내 쓸 수 있어서 
-2. state 버그 관리가 용이, state 수정하려면 수정방법을 reducer로 미리 정의해놓고 컴포넌트는 dispatch() 를 이용해서 state 수정해달라고 reducer에 부탁하는 형식으로 코드를 짜야한다. 그래야 갑자기 state가 이상해지는 버그가 생겨도 범인을 reducer에서 쉽게 찾을 수 있다.
+2. state 버그 관리가 용이, state 수정하려면 수정방법을 reducer로 미리 정의해놓고 컴포넌트는 dispatch() 를 이용해서 state 수정해달라고 reducer에 부탁하는 형식으로 코드를 짜야한다. 그래야 갑자기 state가 이상해지는 버그가 생겨도 범인을 reducer에서 쉽게 찾을 수 있다.         
 
 ```
 yarn add redux react-redux
