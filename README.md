@@ -12,12 +12,14 @@ npm i -g create-react-app
 
 ```python
 npx create-react-app my-app
+yarn create react-app my-app
 ```
 
 * 프로젝트 실행
 
 ```python
 npm start
+yarn start
 ```
 
 http://localhost:3000 으로 실행
