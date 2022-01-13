@@ -56,6 +56,10 @@ function App(){
 }
 ```
 
+```jsx
+<Route path="주소규칙" component={보여 줄 컴포넌트} />
+```
+
 **import/export 문법, import React**
 
 mui emotion
