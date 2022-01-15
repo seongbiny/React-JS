@@ -1,273 +1,220 @@
-## React.js
+# React 기초
 
-node.js lts 버전으로 다운로드
+## JSX
 
-```powershell
-node -v
-npm -v
-npm i -g create-react-app
-```
+### JSX의 기본 규칙
 
-* 프로젝트 생성
+* 태그는 꼭 닫기
 
-```python
-npx create-react-app my-app
-yarn create react-app my-app
-```
+  * 두 개 이상의 태그는 무조건 하나의 태그로 감싸기
+  * Fragment <></> 브라우저 상에서 따로 별도의 엘리먼트로 나타나지 않음
 
-* 프로젝트 실행
+* JSX 내부에 자바스크립트 변수 
 
-```python
-npm start
-yarn start
-```
+  * {} 로 감싸서 사용
 
-http://localhost:3000 으로 실행
+* undefined를 렌더링하지 않기
 
-
-
-## React 란?
-
-**React는** 사용자 인터페이스를 구축하기 위한 선언적이고 효율적이며 유연한 **JavaScript 라이브러리**
-
-"컴포넌트"라고 불리는 작고 고립된 코드의 파편을 이용하여 복잡한 UI를 구성하도록 도와준다.
-
-```jsx
-ReactDOM.render(
-  <h1>Hello, world!</h1>,
-    document.getElementById('root')
-);
-```
-
-## JSX 
-
-```jsx
-const element = <h1>Hello, world!</h1>;
-```
-
-## 엘리먼트 렌더링
-
-> 엘리먼트는 React 앱의 가장 작은 단위이다.
-
-엘리먼트는 컴포넌트의 "구성 요소"
-
-사용자 화면에 뷰를 보여 주는 것 = 렌더링
-
-## Components와 Props
-
-> 컴포넌트를 통해 UI를 재사용 가능한 개별적인 여러 조각으로 나누고, 각 조각을 개별적으로 살펴볼 수 있다.
-
-개념적으로 컴포넌트는 JavaScript 함수와 유사하다. "props"라고 하는 임의의 입력을 받은 후, 화면에 어떻게 표시되는지를 기술하는 React 엘리먼트를 반환한다.
-
-### 함수 컴포넌트와 클래스 컴포넌트
-
-```jsx
-function Welcome(props) {
-    return <h1>Hello, {props.name}</h1>
-}
-```
-
-이 함수는 데이터를 가진 하나의 "props" 객체 인자를 받은 후 React 엘리먼트를 반환하므로 유효한 React 컴포넌트이다. 이러한 컴포넌트는 JavaScript 함수이기 때문에 말 그대로 "함수 컴포넌트"라고 호칭한다.
-
-```jsx
-class Welcome extends React.Component {
-    render () {
-        return <h1>Hello, {this.props.name}</h1>;
+  * ```jsx
+    function App() {
+        const name = undefined;
+        return name;
+    } => XXXXX
+    
+    function App() {
+        const name = undefined;
+        return <div>{name || '리액트'}</div> ;
+        return name || '값이 undefined입니다.';
     }
-}
-```
+    ```
 
-React 관점에서 볼 때 두가지 유형의 컴포넌트는 동일하다.
+* JSX 에서 style 과 CSS class
 
-class는 몇 가지 추가 기능이 있다.
+  * 인라인 스타일은 객체 형태로 작성 & camelCase 형태로 네이밍
+  * class 는 className= 으로 설정
 
-**주의: 컴포넌트의 이름은 항상 대문자로 시작한다.**
+* JSX 내부의 주석
 
+  * {/* */}
+  * //
 
+## Component와 Props
 
-### 리액트를 배우는 이유?
+어떠한 값을 컴포넌트에게 전달해줘야 할 때 props를 사용한다.
 
-**Web app** 을 만들기 위해
+* props: 어떤 컴포넌트를 import 해와서 사용하는 부모(상위) 컴포넌트에서 정하는 값. 부모 컴포넌트에서 설정해서 자식 컴포넌트로 전달하여 자식 컴포넌트에서 쓰인다.
+* children: A 컴포넌트 사이에 B 컴포넌트가 있을 때, A 컴포넌트에서 B 컴포넌트 내용을 보여주려고 사용하는 props.
 
-Vibe, Flipkart, Instagram 같은 사이트를 웹앱이라고 부른다.
-
-다른 페이지로 넘어가거나 포스팅을 발행하거나 그런 행동을 해도 새로고침이 되지 않고 **스무스하게** 동작한다.
-
-
-
-웹앱을 사용하는 이유
-
-- UX가 뛰어나서 좋은 사용자경험을 제공하니까
-- HTML 관리가 편해지고
-- 구매전환율도 높아지고
-- 리액트 문법으로 IOS/Android 모바일 앱제작도 가능하고
-- 서버개발자가 편해져서
-
-
-
-### App.js
-
-```react
-function App(){
-    return(
-      <div className="App">
-      
-        </div>
-    )
-}
-```
-
-리액트에서 JSX라는 문법을 쓴다. JS+HTML 일종의 자바스크립트기 때문에 자바스크립트에서 사용하는 예약어인 class라는 키워드를 막 사용하면 안됨
-
-
-
-### JSX에서 데이터바인딩하기
-
-데이터바인딩은? 자바스크립트 데이터를 HTML에 꽂아넣는 작업
-
-```react
-function App(){
-    var data = '안녕하세요'; // 이 data를
-    retrun (
-        <div className="App">
-      		<div className="black-nav">
-            <div></div> // 여기에 꽂고 싶으면?
-            </div>
-        </div>
-    )
-}
-```
-
-```react
-function App(){
-    var data = '안녕하세요';
-    retrun (
-    	<div className="App">
-        	<div className="black-nav">
-                <div>개발 blog</div>
-                <div>{ data }</div> 
-            </div>
-        </div>
-    )
-}
-```
-
-
-
-### HTML에 스타일을 직접 넣고 싶으면
-
-JSX 상에서는 무조건 {} 오브젝트로 바꿔서 넣어야한다.
+### defaultProps 로 기본값 설정
 
 ```jsx
-<div style={ 스타일용 오브젝트 }> 글씨 </div>
+// Hello.js
 
-<div style={ {color: 'blue', fontSize: '30px'} }> 글씨 </div>
+import React from 'react';
+
+function Hello({ name }) {
+    return <div>안녕하세요 {name}</div>
+}
+
+Hello.defaultProps = {
+    name: '이름 없음'
+}
+
+export default Hello;
 ```
 
-- {속성명: '속성값'}
-- 복잡해질 수 있다 => 변수로 따로 저장해놓고 style={변수명} 이렇게 넣거나 CSS파일에 class를 만들어 사용한다.
+### props.children
 
-
-
-### state 만들어서 데이터 저장하기
-
-리액트에선 변수 말고 state를 만들어서 데이터를 저장해 쓸 수 있다.
-
-**변수가 변경될 때 자동으로 관련된 HTML을 재랜더링되게 만들고 싶으면** 변수 말고 state를 만들어 써야한다.
-
-**리액트는 state가 수정이 일어나면 state가 포함된 HTML을 자동으로 재랜더링 해준다**
-
-```react
-import { useState } from 'react';
-
-let [변수명, 변수명변경] = useState(저장할 데이터);
-```
-
-**state 데이터도 똑같이 변수처럼 데이터바인딩 가능**
-
-**state에는 Array, Object 아무거나 다 넣을 수 있다.**
-
-state를 변경하려면 state변경함수를 이용한다.
-
-1. 수정하고 싶은 state의 deep/shallow 카피본을 하나 생성한다.
-2. 카피본을 원하는대로 수정한다.
-3. 카피본을 state변경함수() 에 넣는다.
-
-
-
-### 어떤 HTML들을 Component 만드는게 좋을까?
-
-- 사이트에 반복해서 출현하는 HTML 덩어리들
-- 내용이 매우 자주 변경될 것 같은 HTML 부분을 잘라서
-- 다른 페이지를 만들고 싶다면 그 페이지의 HTML 내용을 하나의 컴포넌트로
-- 다른 팀원과 협업할 때 웹페이지를 컴포넌트 단위로 나눠서 작업을 분배
-
-컴포넌트간에 state를 쓰고싶으면 props 문법을 이용해야하니까 너무 잘게 쪼개지 않기
-
-
+컴포넌트 태그 사이에 넣은 값을 조회하고 싶을 땐, `props.children`을 조회하면 된다.
 
 ```jsx
-조건식 ? 조건식 참일 때 실행할 코드 : 조건식 거짓일 때 실행할 코드
+// Hello.js
+
+function Hello({ name, children }) {
+    return (
+    	<div>
+        	<div>안녕하세요 {name}</div>
+            <div>children 값은 {children}입니다.</div>
+        </div>
+    )
+}
 ```
 
+```jsx
+// App.js
 
+import React from 'react';
+import Hello from './Hello';
 
-array 안의 모든 자료에 똑같은 작업을 하나씩 시켜주고 싶을 때 쓰는 문법 map
+function App() {
+    return <Hello name="react">리액트</Hello>
+}
+```
 
-```react
-var array = [2,3,4];
-var newArray = array.map(function(a){
-    return a * 10
+### 조건부 렌더링
+
+isTrue 값이 `true`라면 <b>*</b>을, 그렇지 않다면 `null`을 보여주도록 하는 삼항연산자
+
+JSX에서 null, false, undefined를 렌더링하게 된다면 아무것도 나타나지 않게 된다.
+
+```jsx
+{ isTrue ? <b>*</b> : null }
+{ isTrue && <b>*</b> }
+```
+
+보통 삼항연산자를 사용한 조건부 렌더링을 주로 특정 조건에 따라 보여줘야 하는 내용이 다를 때 사용한다. 내용이 달라지는게 아니라, 단순히 특정 조건이 `true`면 보여주고, 그렇지 않다면 숨겨주는 상황에서는 **&& 연산자를 사용해서 처리하는 것**이 더 간편하다.
+
+### state
+
+리액트에서 state는 컴포넌트 내부에서 바뀔 수 있는 값을 의미한다. props는 컴포넌트가 사용되는 과정에서 부모 컴포넌트가 설정하는 값이며, 컴포넌트 자신은 해당 props를 읽기 전용으로만 사용할 수 있다. props를 바꾸려면 부모 컴포넌트에서 바꾸어 주어야 한다. 
+
+함수 컴포넌트에서는 Hooks의 일종인 useState를 이용해서 사용할 수 있다.
+
+```jsx
+import React, { useState } from 'react';
+
+const [inputs, setInputs] = useState({
+    name: '',
+    nickname: ''
+});
+const { name, nickname } = inputs;
+```
+
+리액트에서 객체를 수정해야 할 때에는 직접 수정하면 안됨
+
+```jsx
+inputs[name] = value;// XXX
+
+setInputs({
+    ...inputs,
+    [name]: value
 });
 ```
 
-### JSX 안에서 map으로 반복문을 돌리고 싶으면
+## 이벤트 핸들링
 
-1. 원하는 자료에다가 map을 붙이면 그 자료 갯수만큼 반복문을 돌릴 수 있으며
-2. 반복을 원하는 HTML을 return 안에 적으면 끝
+### 이벤트를 사용할 때 주의 사항
 
-#### 일반 for 반복문을 쓰고싶다면
+1. 이벤트 이름은 카멜 표기법으로 작성한다.
+2. 이벤트에 실행할 자바스크립트 코드를 전달하는 것이 아니라, 함수 형태의 값을 전달한다.
+3. DOM 요소에만 이벤트를 설정할 수 있다.
+   * div, button, input, form, span 등의 DOM 요소에만 이벤트 설정 가능 
+   * 직접 만든 컴포넌트에는 이벤트를 자체적으로 설정할 수 없다.
 
-1. 따로 일반 함수를 만들고
-2. 함수안에 HTML을 담은 array 자료를 하나 생성한다.
-3. 함수안에서 for 반복문을 이용해 array내에 HTML을 추가해준다.
-4. 완성된 array를 return 해준다.
-5. 함수를 원하는 곳에 { 함수명() } 데이터바인딩 해준다.
+### 이벤트 종류
 
-함수 만들기 귀찮으니 그냥 map을 사용하자
+* https://reactjs.org/docs/events.html
 
+## ref:DOM에 이름 달기
 
+* DOM을 직접 선택해야 하는 상황에서 `ref`를 사용한다.
 
-## useEffect
+* 함수형 컴포넌트에서 `ref`를 사용 할 때에는 `useRef`라는 Hook 함수를 사용한다.
+* 원하는 위치에 ref={} 의 형태로 작성한다.
+* 외부라이브러리 사용할 때 유용하다.
 
-```react
-import React, {useState, useEffect} from 'react';
+```jsx
+const nameInput = useRef();
 
-function Detail(){
+const onClick = () => {
+    nameInput.current.focus();
+}
 
-  useEffect(()=>{
-    //코드를 적습니다 여기
-    return function 어쩌구(){ 실행할 코드 } //컴포넌트가 사라질 때 실행
-  }, [alert]); // 실행조건. alert라는 이름의 state가 변경될 때만 업데이트로 치고 실행해달란 뜻. []면 컴포넌트 로드때만 딱 한번 실행
-  
-  return (
-    <HTML많은곳/>
-  )
+return (
+	<input ref={nameInput} />
+    <button onClick={onClick}>클릭</button>
+)
+```
+
+useRef() 를 사용하여 Ref 객체를 만들고, 선택하고 싶은 DOM 에 ref 값으로 설정
+
+Ref 객체의 .current 값은 선택한 DOM 을 가리킴
+
+#### useRef의 또 다른 역할
+
+* 컴포넌트 안에서 조회 및 수정 할 수 있는 변수 관리
+* useRef로 관리되는 변수는 값이 바뀌어도 컴포넌트가 리렌더링 되지 않는다.
+  * 이 값을 수정 할 때에는 .current 값을 수정, 조회 할 때에는 .current를 조회
+
+## 컴포넌트 반복
+
+동적인 배열을 렌더링해야 할 때에는 자바스크립트 배열의 내장함수 map() 을 사용한다. 
+
+```jsx
+import { useState } from 'react';
+
+function IterationSample(){
+    const [names, setNames] = useState([
+        { id: 1, text: '봄' },
+        { id: 2, text: '여름' },
+        { id: 3, text: '가을' },
+        { id: 4, text: '겨울' },
+    ]);
+    const namesList = names.map(name => (
+    	<li key={name.id}>
+    		{name.text}
+    	</li>
+    ));
+    return <ul>{namesList}</ul>
 }
 ```
 
-1. 페이지 상단에 useEffect를 import 한다.
-2. useEffect() 사용
-3. 안에 콜백함수
-4. 콜백함수 안에는 **Detail 컴포넌트가 첫 등장하고나서 실행하고싶은 코드**적어준다.
+map에 key 값이 없다면 중간에 값이 바뀌었을 때 그 하위 값들이 전부 변하기때문에 비효율적인 렌더링이다. 고유한 key 값을 사용한다면 key를 이용해 중간의 값을 추가하거나 뺄 수 있다.
 
-#### useEffect() 내의 코드의 실행조건
+배열에 변화를 줄 때에는 불변성을 지켜주어야 한다. `push`, `splice`, `sort` 등의 함수를 사용하면 안된다. 만약 사용해야 한다면 기존의 배열을 한 번 복사하고 나서 사용해야한다. 
 
-* 컴포넌트가 첫 등장해서 로딩이 끝난 후에 (mount 끝났을 때)
-* 컴포넌트가 재랜더링 되고난 후에 (update 되고난 후)
+1. ... spread 연산자를 사용해서 복사해준 뒤 사용
 
-```javascript
-타이머이름 = setTimeout( ()=>{  1초 후 실행할 코드 }, 1000);
-clearTimeout(타이머이름) 
-```
+   * ```jsx
+     setUsers([...users, user]);
+     ```
+
+2. `concat`, `filter` 을 사용
+
+   * ```jsx
+     setUsers(users.concat(user));
+     setUsers(users.filter(user => user.id !== id));
+     ```
+
+     
 
