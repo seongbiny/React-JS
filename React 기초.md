@@ -131,3 +131,44 @@ setInputs({
 });
 ```
 
+## 이벤트 핸들링
+
+### 이벤트를 사용할 때 주의 사항
+
+1. 이벤트 이름은 카멜 표기법으로 작성한다.
+2. 이벤트에 실행할 자바스크립트 코드를 전달하는 것이 아니라, 함수 형태의 값을 전달한다.
+3. DOM 요소에만 이벤트를 설정할 수 있다.
+   * div, button, input, form, span 등의 DOM 요소에만 이벤트 설정 가능 
+   * 직접 만든 컴포넌트에는 이벤트를 자체적으로 설정할 수 없다.
+
+### 이벤트 종류
+
+* https://reactjs.org/docs/events.html
+
+## ref:DOM에 이름 달기
+
+* DOM을 직접 선택해야 하는 상황에서 `ref`를 사용한다.
+
+* 함수형 컴포넌트에서 `ref`를 사용 할 때에는 `useRef`라는 Hook 함수를 사용한다.
+* 원하는 위치에 ref={} 의 형태로 작성한다.
+* 외부라이브러리 사용할 때 유용하다.
+
+```jsx
+const nameInput = useRef();
+
+const onClick = () => {
+    nameInput.current.focus();
+}
+
+return (
+	<input ref={nameInput} />
+    <button onClick={onClick}>클릭</button>
+)
+```
+
+useRef() 를 사용하여 Ref 객체를 만들고, 선택하고 싶은 DOM 에 ref 값으로 설정
+
+Ref 객체의 .current 값은 선택한 DOM 을 가리킴
+
+## 컴포넌트 반복
+
