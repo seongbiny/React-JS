@@ -65,13 +65,54 @@ deps가 비어있는 경우에는 컴포넌트가 사라질 때 cleanup 함수�
 
 ## useReducer
 
+* 현재 컴포넌트가 아닌 다른 곳에 state를 저장하고 싶을 때 사용
+* reducer 라는 함수를 만들고 state와 action 이라는 인자를 받는다.
+* action 에는 객체가 전달되는데 그 안에 type 이라는 프로퍼티를 주로 설정해서 사용한다.
+* type 프로퍼티를 통해 switch 문으로 분기한다.
+* state는 useReducer를 통해 저장된 변수이다.
 
+```jsx
+const [state, dispatch] = useReducer(reducer, initialState);
+```
+
+* reducer는 함수
+* initialState는 객체
 
 ## useMemo
 
+```jsx
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+useMemo(callback, [변경되는 값]);
+```
+
+* memoization 된 값을 반환
+* 의존성이 변경되는 경우, 이전에 기억하고 있던 리턴 값과 비교해서 다른 경우에만 리렌더링
+* useMemo에서 전달된 함수는 렌더링 중에 실행되므로, 렌더링 중에서 실행하지 않는 함수는 useEffect를 사용할 것
+* useRef는 DOM element의 특정 속성 값을 기억한다면, useMemo는 특정 함수의 리턴 값을 기억한다.
+* 성능 최적화할 때 사용한다.
+* 첫 번째 인수에는 함수, 두 번째 인수에는 배열을 넣어준다.
+  * **두번째 배열이 바뀌기 전까지 값을 기억**
+
 ## useCallback
+
+```jsx
+const memoizedCallback = useCallback(
+	() => {
+        doSomething(a, b);
+    },
+    [a, b],
+);
+```
+
+* memoization 된 콜백(함수) 자체를 반환
+* `useCallback(fn, deps)` 은 `useMemo(() => fn, deps)` 와 동일
+* 의존성이 변경되는 경우, 이전에 기억하고 있던 함수 자체와 비교해서 다른 경우에만 리렌더링
 
 ## useRef
 
 ## 커스텀 Hooks
 
+use라는 키워드로 시작하는 파일을 만들고 그 안에 함수를 작성
+
+그 안에서 useState, useEffect, useReducer, useCallback 등 Hooks를 사용하여 원하는 기능을 구현해주고 컴포넌트에서 사용하고 싶은 값들을 반환
