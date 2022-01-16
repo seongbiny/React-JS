@@ -185,18 +185,7 @@ function Detail(){
   let history = useHistory();
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-md-6">
-          <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
-        </div>
-        <div className="col-md-6 mt-4">
-          <h4 className="pt-5">상품명</h4>
-          <p>상품설명</p>
-          <p>120000원</p>
-          <button className="btn btn-danger">주문하기</button> 
-          <button onClick={()=>{ history.goBack() }} className="btn btn-danger">뒤로가기</button> 
-        </div>
-      </div>
+      <button onClick={()=>{ history.goBack() }}>뒤로가기</button> 
   </div>  
   )   
 }
@@ -209,11 +198,11 @@ function Detail(){
 
 `onClick={()=>{ history.push('/') }` 그 경로로 이동
 
-
-
 ### Switch 컴포넌트
 
 **매치되는 <Route>들을 전부 보여주지 말고 한번에 하나씩만 보여주세요**
+
+여러 Route들을 감싸서 그 중 규칙이 일치하는 라우트 단 하나만을 렌더링시켜준다. Switch를 사용하면 아무것도 일치하지 않았을때 보여줄 Not Found 페이지를 구현할 수 있다.
 
 ```react
 // App.js
@@ -232,6 +221,8 @@ function App(){
         <Route path="/:id">
           <div>새로 만든 route입니다</div>
         </Route>
+        // path를 따로 정의하지 않으면 모든 상황에 렌더링 됨
+        <Route>이 페이지는 존재하지 않습니다.</Route>
       </Switch>
     </div>
   )

@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './Home';
+import Color, { ColorContext } from './Color';
 
-function App() {
-  const [value, setValue] = useState('');
-  useEffect(() => {
-    console.log(value);
-  }, []);
 
-  return (
-    <div>
-      <p>와우</p>
-    </div>
-  );
+function App(){
+    const color = 'blue';
+
+    return (
+    <BrowserRouter>
+      <ColorContext.Provider value={color}>
+        <Route path="/color" component={Color} />
+        <Route path="/home" component={Home} />
+      </ColorContext.Provider>
+    </BrowserRouter>
+    )
 }
 
 export default App;
