@@ -2,7 +2,7 @@
 
 ## useState
 
-함수 컴포넌트에서 상태를 관리할 때 사용
+함수 컴포넌트에서 상태를 관리할 때 사용...
 
 ## useEffect
 
@@ -98,7 +98,7 @@ useMemo(callback, [변경되는 값]);
 
 ```jsx
 const memoizedCallback = useCallback(
-	() => {
+    () => {
         doSomething(a, b);
     },
     [a, b],
