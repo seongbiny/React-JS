@@ -216,5 +216,11 @@ map에 key 값이 없다면 중간에 값이 바뀌었을 때 그 하위 값들�
      setUsers(users.filter(user => user.id !== id));
      ```
 
-     
 
+### state와 props의 차이점은?
+
+props와 state는 일반 JavaScript 객체이다. 두 객체 모두 렌더링 결과물에 영향을 주는 정보를 갖고 있는데, 한 가지 중요한 방식에서 차이가 있다. `props`는 (함수 매개변수처럼) 컴포넌트에 전달되는 반면 `state`는 (함수 내에 선언된 변수처럼) 컴포넌트 안에서 관리된다.
+
+### React에서 애니메이션을 할 수 있나요?
+
+React는 애니메이션을 표현할 수 있습니다. 이에 대한 예시로 [React Transition Group](https://reactcommunity.org/react-transition-group/), [React Motion](https://github.com/chenglou/react-motion), [React Spring](https://github.com/react-spring/react-spring) 또는 [Framer Motion](https://framer.com/motion)을 확인해 보세요.
