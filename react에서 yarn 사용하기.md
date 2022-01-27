@@ -4,7 +4,7 @@ yarn 1.22 install
 
 yarn add ~
 
-yarn start
+yarn start   
 
 ## react에서 bootstrap 사용하기
 
