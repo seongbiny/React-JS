@@ -40,6 +40,15 @@
 
 ## Component와 Props
 
+긴 HTML을 한 단어로 깔끔하게 치환해서 넣을 수 있는 문법 = Component
+
+#### 어떤 HTML들을 Component 만드는게 좋을까?
+
+* 사이트에 반복해서 출현하는 HTML 덩어리들
+* 내용이 매우 자주 변경될 것 같은 HTML 부분을 잘라서
+* 다른 페이지를 만들고 싶다면 그 페이지의 HTML 내용을 하나의 컴포넌트로
+* 다른 팀원과 협업할 때 웹페이지를 컴포넌트 단위로 나눠서 작업을 분배
+
 어떠한 값을 컴포넌트에게 전달해줘야 할 때 props를 사용한다.
 
 * props: 어떤 컴포넌트를 import 해와서 사용하는 부모(상위) 컴포넌트에서 정하는 값. 부모 컴포넌트에서 설정해서 자식 컴포넌트로 전달하여 자식 컴포넌트에서 쓰인다.
@@ -106,7 +115,17 @@ JSX에서 null, false, undefined를 렌더링하게 된다면 아무것도 나�
 
 ### state
 
-리액트에서 state는 컴포넌트 내부에서 바뀔 수 있는 값을 의미한다. props는 컴포넌트가 사용되는 과정에서 부모 컴포넌트가 설정하는 값이며, 컴포넌트 자신은 해당 props를 읽기 전용으로만 사용할 수 있다. props를 바꾸려면 부모 컴포넌트에서 바꾸어 주어야 한다. 
+리액트에서 state는 컴포넌트 내부에서 바뀔 수 있는 값을 의미한다. 
+
+state에는 Array, Object 등 아무거나 다 넣을 수 있다.
+
+#### 변수 말고 state에 데이터 저장해서 쓰는 이유
+
+* **"변수가 변경될 때 자동으로 관련된 HTML을 재렌더링되게 만들고 싶을때 state 사용"**
+* **리액트는 state에 수정이 일어나면 state가 포함된 HTML을 자동으로 재렌더링 해준다**
+  * 일반 변수는 변경이 발생해도 자동으로 재렌더링 해주지 않는다 -> 바뀌지 않는 데이터들은 굳이 state로 저장할 필요 없음
+
+props는 컴포넌트가 사용되는 과정에서 부모 컴포넌트가 설정하는 값이며, 컴포넌트 자신은 해당 props를 읽기 전용으로만 사용할 수 있다. props를 바꾸려면 부모 컴포넌트에서 바꾸어 주어야 한다. 
 
 함수 컴포넌트에서는 Hooks의 일종인 useState를 이용해서 사용할 수 있다.
 
@@ -224,3 +243,10 @@ props와 state는 일반 JavaScript 객체이다. 두 객체 모두 렌더링 �
 ### React에서 애니메이션을 할 수 있나요?
 
 React는 애니메이션을 표현할 수 있습니다. 이에 대한 예시로 [React Transition Group](https://reactcommunity.org/react-transition-group/), [React Motion](https://github.com/chenglou/react-motion), [React Spring](https://github.com/react-spring/react-spring) 또는 [Framer Motion](https://framer.com/motion)을 확인해 보세요.
+
+### 삼항연산자
+
+리액트 중괄호 내에서 if문을 사용할 수 없어서 if문 대용 역할을 할 수 있는 삼항연산자를 사용한다.
+
+`조건식 ? 조건식 참일 때 실행할 코드 : 조건식 거짓일 때 실행할 코드`
+
